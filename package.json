@@ -1,0 +1,55 @@
+{
+  "name": "alluga.me-web-application",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "private": true,
+  "scripts": {
+    "dev": "webpack-dev-server --hot --open --quiet --content-base ./dist --client-log-level warning ",
+    "debug": "webpack -d --env development --display-error-details",
+    "watch": "webpack -w -d --env development --hide-modules",
+    "deploy": "webpack -p --env production --hide-modules"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AllugaMe/web-application.git"
+  },
+  "keywords": [
+    "light-bulb"
+  ],
+  "author": "Vitor Luiz Cavalcanti <vitorluizc@outlook.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AllugaMe/web-application/issues"
+  },
+  "homepage": "https://github.com/AllugaMe/web-application#README",
+  "devDependencies": {
+    "babel-core": "^6.24.0",
+    "babel-loader": "^7.0.0-beta.1",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-es2015": "^6.24.0",
+    "concurrently": "^3.4.0",
+    "css-loader": "^0.28.0",
+    "eslint-plugin-html": "^2.0.1",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.11.1",
+    "html-webpack-plugin": "^2.28.0",
+    "image-webpack-loader": "^3.3.0",
+    "pug": "^2.0.0-beta11",
+    "pug-loader": "github:pugjs/pug-loader",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
+    "vue-loader": "^11.3.4",
+    "vue-style-loader": "^3.0.0",
+    "vue-template-compiler": "^2.2.6",
+    "webpack": "^2.3.2",
+    "webpack-dev-server": "^2.4.2"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.23.0",
+    "firebase": "^3.7.4",
+    "vue": "^2.2.6",
+    "vue-router": "^2.3.1",
+    "vuex": "^2.2.1"
+  }
+}
