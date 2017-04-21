@@ -1,4 +1,6 @@
-import ViewLogin from './ViewLogin.vue'
-import ViewDashboard from './ViewDashboard.vue'
+import VViewDashboard from './VViewDashboard.vue'
+import VViewHome from './VViewHome.vue'
+import VViewLogin from './VViewLogin.vue'
+import VViewSearch from './VViewSearch.vue'
 
-export { ViewLogin, ViewDashboard }
+export { VViewDashboard, VViewHome, VViewLogin, VViewSearch }

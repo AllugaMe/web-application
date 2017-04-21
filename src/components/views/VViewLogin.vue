@@ -1,13 +1,13 @@
 <template lang="pug">
-  ViewContainer
+  v-view(hideHeader='true')
     FormLogin
 </template>
 
 <script>
-  import ViewContainer from '../ViewContainer.vue'
+  import VView from '../VView.vue'
   import FormLogin from '../FormLogin.vue'
 
   export default {
-    components: { ViewContainer, FormLogin }
+    components: { VView, FormLogin }
   }
 </script>

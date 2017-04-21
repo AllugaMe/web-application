@@ -38,5 +38,5 @@
     success: green
   }
 
-  @import '../../node_modules/vuetify/src/stylus/main'
+  @import '../node_modules/vuetify/src/stylus/main'
 </style>

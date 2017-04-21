@@ -16,3 +16,7 @@ U can also install using NPM.
 cd <path>/web-application
 npm install
 ```
+
+## Guide
+- Use **kebab-case** components on SFC templates.
+- No semi-colons or useless curly brackets.
