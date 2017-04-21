@@ -4,7 +4,7 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import application from '../lib/application.js'
+  import application from './lib/application.js'
 
   const auth = application.auth()
 
@@ -27,4 +27,16 @@
   }
 </script>
 
-<style lang="stylus" src="../style/base.styl"></style>
+<style lang="stylus">
+  $theme := {
+    primary: red
+    accent: yellow
+    secondary: blue
+    info: lightblue
+    warning: orange
+    error: coral
+    success: green
+  }
+
+  @import '../../node_modules/vuetify/src/stylus/main'
+</style>
