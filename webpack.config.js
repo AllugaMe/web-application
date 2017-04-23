@@ -36,9 +36,9 @@ module.exports = env => {
   if (isProd) {
     config.devtool = false
     config.plugins = (config.plugins || []).concat([
-      new DefinePlugin({
-        'process.env': {
-          NODE_ENV: '"production"'
+      new DefinePlugin({           // Remove os "warnings" e dados do "depura  -
+        'process.env': {           // dor" do módulo Vue, deixando somente os
+          NODE_ENV: '"production"' // executáveis que são bem menores.
         }
       }),
       new UglifyJsPlugin({
