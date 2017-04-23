@@ -36,8 +36,8 @@
     "file-loader": "^0.11.1",
     "html-webpack-plugin": "^2.28.0",
     "image-webpack-loader": "^3.3.0",
-    "pug": "^2.0.0-beta11",
-    "pug-loader": "github:pugjs/pug-loader",
+    "pug": "^2.0.0-beta.12",
+    "pug-loader": "^2.3.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "vue-loader": "^11.3.4",
@@ -49,7 +49,6 @@
   "dependencies": {
     "babel-polyfill": "^6.23.0",
     "firebase": "^3.8.0",
-    "mdi": "^1.9.33",
     "vue": "^2.2.6",
     "vue-router": "^2.4.0",
     "vuetify": "^0.11.0",
