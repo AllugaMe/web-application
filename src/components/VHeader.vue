@@ -1,13 +1,14 @@
 <template lang="pug">
-  v-toolbar
-    v-toolbar-side-icon
-      router-link(to="/")
-        img.image(src="../asset/image/logo.png", alt="Nome da Aplicação", title="Nome da Aplicação.")
-    v-toolbar-title Nome da Aplicação
-    v-toolbar-items
-      v-toolbar-item
-        v-btn(@click.native="signOut") Sign Out
-          //- v-icon(right) close
+  header.main-header
+    v-toolbar
+      v-toolbar-side-icon
+        router-link(to="/")
+          img.image(src="../asset/image/logo.png", alt="Nome da Aplicação", title="Nome da Aplicação.")
+      v-toolbar-title Nome da Aplicação
+      v-toolbar-items
+        v-toolbar-item
+          v-btn(@click.native="signOut") Sign Out
+            //- v-icon(right) close
 </template>
 
 <script>

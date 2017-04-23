@@ -39,4 +39,12 @@
   }
 
   @import '../node_modules/vuetify/src/stylus/main'
+
+  @font-face
+    font-family: 'Material Icons'
+    src: url('./asset/font/MaterialIcons-Regular.woff2') format('woff2'),
+         url('./asset/font/MaterialIcons-Regular.woff')  format('woff')
+
+  html                          // O Vuetify usa scroll no eixo Y independente
+    overflow-y: auto !important // da sua necessidade e essa regra resolve isso.
 </style>
