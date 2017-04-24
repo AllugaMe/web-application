@@ -5,22 +5,33 @@
 <script>
   import { mapGetters } from 'vuex'
   import application from './lib/application.js'
+  import database from './lib/database.js'
 
   const auth = application.auth()
 
   export default {
     computed: {
-      ...mapGetters(['user', 'profile'])
+      ...mapGetters(['user', 'profile', 'isSubscribing'])
     },
     created() {
-      auth.onAuthStateChanged(async user => {
-        await this.$store.commit('update-user', user || null)
+      auth.onAuthStateChanged(async authetication => {
+        try {
+          if (this.isSubscribing)
+            return
 
-        let permission = (this.$route.meta.profiles.indexOf(this.profile) > -1)
+          if (authetication)
+            var user = await database.ref('users').child(authetication.uid).once('value')
 
-        if (!permission) {
-          let isGuest = (this.profile === 'guest')
-          this.$router.replace(isGuest ? '/login' : '/dashboard')
+          await this.$store.commit('update-user', user || {})
+
+          let permission = (this.$route.meta.profiles.indexOf(this.profile) > -1)
+
+          if (!permission) {
+            let isGuest = (this.profile === 'guest')
+            this.$router.replace(isGuest ? '/login' : '/dashboard')
+          }
+        } catch (err) {
+          console.error(err)
         }
       })
     }

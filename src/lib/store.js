@@ -5,22 +5,26 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    user: undefined,
-    ideas: [],
-    tags: []
+    isSubscribing: false,
+    user: {
+      uid: null,
+      name: 'Unknown',
+      email: 'Unknown',
+      picture: '/img/icon-person.svg'
+    }
   },
   getters: {
-    profile(state) {
-      return (!!state.user) ? 'user' : 'guest'
-    },
-    user(state) {
-      return state.user
-    }
+    isSubscribing: state => state.isSubscribing,
+    user: state => state.user,
+    profile: state => !!state.user ? 'user' : 'guest'
   },
   mutations: {
+    'update-isSubscribing'(store, isSubscribing) {
+      store.isSubscribing = isSubscribing
+    },
     'update-user'(store, user) {
       store.user = user
-    }
+    },
   }
 })
 
