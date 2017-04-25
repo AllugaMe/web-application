@@ -1,5 +1,5 @@
 <template lang="pug">
-  a(:to='to', @click='openLink', ref='element', target='_blank')
+  a.link(:to='to', @click='openLink', ref='element', target='_blank')
     slot
 </template>
 
@@ -30,3 +30,11 @@
     }
   }
 </script>
+
+<style lang="stylus">
+  .link
+  .link:link
+  .link:visited
+    text-decoration: none
+    cursor: pointer
+</style>

@@ -1,3 +1,3 @@
 <template lang="pug">
-  form(@submit.prevent="search")
+  form(@submit.prevent='search')
 </template>

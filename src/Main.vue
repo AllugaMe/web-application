@@ -1,5 +1,5 @@
 <template lang="pug">
-  router-view(v-if="user !== undefined")
+  router-view(v-if='user !== undefined')
 </template>
 
 <script>
@@ -44,8 +44,11 @@
 </script>
 
 <style lang="stylus">
+  $yellow = #f9dc5f
+  $blue = #5f7cf9
+
   $theme := {
-    primary: red
+    primary: $blue
     accent: yellow
     secondary: blue
     info: lightblue

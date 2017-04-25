@@ -1,9 +1,8 @@
 <template lang="pug">
   header.main-header
     v-toolbar
-      v-toolbar-side-icon
-        router-link(to='/')
-          img.image(src='../asset/image/logo.png', :src='application.logo', :alt='application.name', :title='application.name')
+      router-link.logo(to='/')
+        img.image(src='../asset/image/logo.png', :alt='application.name', :title='application.name')
       v-toolbar-title Nome da Aplicação
       v-toolbar-items
         v-toolbar-item
@@ -28,3 +27,14 @@
     }
   }
 </script>
+
+<style lang="stylus">
+  .main-header .logo
+    display: inline-block
+    line-height: 1
+
+    & > .image
+      display: inline-block
+      width: 56px
+      height: @width
+</style>

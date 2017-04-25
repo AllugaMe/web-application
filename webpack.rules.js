@@ -63,6 +63,18 @@ const font = {
   ]
 }
 
-const rules = [babel, vue, pug, image, font]
+const icon = {
+  test: /\.ico$/,
+  use: [
+    {
+      loader: 'file-loader',
+      options: {
+        name: '/[name].[ext]'
+      }
+    }
+  ]
+}
+
+const rules = [babel, vue, pug, image, font, icon]
 
 module.exports = { extractStyle, rules }
