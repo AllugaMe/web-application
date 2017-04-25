@@ -6,7 +6,7 @@
         v-container(fluid)
           slot
     v-footer(v-if='!hideFooter')
-      v-link.white--text(:to='author.link') {{ author.author }}
+      v-link.white--text(:to='author.link') {{ author.name }}
       |  &copy; {{ author.year }}
 </template>
 
