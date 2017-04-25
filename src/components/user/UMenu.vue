@@ -1,10 +1,10 @@
 <template lang="pug">
   v-btn(v-if='profile === \'guest\'', @click.native='signIn') Entrar
-  v-menu(v-else, offset-y)
+  v-menu.user-menu(v-else, offset-y)
     u-picture(:user='user', :size='36', slot='activator')
     v-list
       v-list-item
-        v-list-tile
+        v-list-tile(@click.native='profile')
           v-list-tile-title Meu perfil
       v-list-item
         v-list-tile(@click.native='signOut')
@@ -25,7 +25,7 @@
       ...mapMutations(['updateUser']),
       async signOut() {
         await auth.signOut()
-        this.updateUser({
+        this.updateUser({   // TODO: Criar uma action que controle isso.
           id: null,
           name: 'Unknown',
           email: 'Unknown',
@@ -35,14 +35,15 @@
       },
       signIn() {
         this.$router.push('/login')
+      },
+      profile() {
+        this.$router.push(`/profile/${this.user.id}`)
       }
     }
   }
 </script>
 
 <style lang="stylus">
-  .avatar
-    display: block
-    width: 100px
-    height: 100px
+  .user-menu
+    margin-left: 12px
 </style>

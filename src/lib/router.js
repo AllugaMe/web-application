@@ -46,6 +46,13 @@ const router = new Router({
           'user'
         ]
       }
+    },
+    {
+      path: '/profile/:id/',
+      component: views.VViewProfile,
+      meta: {
+        profiles: ['user']
+      }
     }
   ]
 })
