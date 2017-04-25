@@ -1,5 +1,5 @@
 <template lang="pug">
-  router-view(v-if='user !== undefined')
+  router-view(v-if='isLoaded')
 </template>
 
 <script>
@@ -10,31 +10,38 @@
   const auth = application.auth()
 
   export default {
+    data() {
+      return {
+        isLoaded: false
+      }
+    },
     computed: mapGetters(['user', 'profile', 'isSubscribing']),
     methods: {
       ...mapMutations(['updateUser']),
       async authenticate(authetication) {
-        try {
-          if (this.isSubscribing)
-            return
+        if (this.isSubscribing)
+          return
 
-          if (authetication) {
+        if (authetication) {
+          try {
             const reference = database.ref('users').child(authetication.uid)
             const data = await reference.once('value')
 
             if (data.exists())
               this.updateUser(data.val())
+          } catch (err) {
+            console.error(err)
           }
+        }
 
-          // TODO: Levar a permissão para a store.
-          let permission = this.$route.meta.profiles.includes(this.profile)
+        this.isLoaded = true
 
-          if (!permission) {
-            let isGuest = (this.profile === 'guest')
-            this.$router.push(isGuest ? '/login' : '/dashboard')
-          }
-        } catch (err) {
-          console.error(err)
+        // TODO: Levar a permissão para a store.
+        let permission = this.$route.meta.profiles.includes(this.profile)
+
+        if (!permission) {                         // TODO: Informar erro de
+          let isGuest = (this.profile === 'guest') // permissão e redirecionar.
+          this.$router.replace(isGuest ? '/login' : '/dashboard')
         }
       }
     },
