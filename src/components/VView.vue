@@ -6,27 +6,18 @@
         v-container(fluid)
           slot
     v-footer(v-if='!hideFooter')
-      v-link.white--text(:to='copyright.link') {{ copyright.author }}
-      |  &copy; {{ copyright.year }}
+      v-link.white--text(:to='author.link') {{ author.author }}
+      |  &copy; {{ author.year }}
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import VHeader from './VHeader.vue'
   import VLink from './VLink.vue'
 
   export default {
     components: { VHeader, VLink },
-    data() {
-      let date = new Date()
-
-      return {
-        copyright: {
-          author: 'Nome da Aplicação',
-          link: 'https://google.com/',
-          year: date.getFullYear()
-        }
-      }
-    },
+    computed: mapGetters(['author']),
     props: {
       hideHeader: {
         type: Boolean,

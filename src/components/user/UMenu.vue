@@ -1,7 +1,7 @@
 <template lang="pug">
   v-btn(v-if='profile === \'guest\'') Entrar
   v-menu(v-else, offset-y)
-    u-picture(:name='name', :picture='picture', slot='activator')
+    u-picture(:name='user.name', :picture='user.picture', slot='activator')
     v-list
       v-list-item
         v-list-tile
@@ -17,9 +17,7 @@
 
   export default {
     components: { UPicture },
-    computed: {
-      ...mapGetters(['user', 'profile'])
-    },
+    computed: mapGetters(['user', 'profile']),
     methods: {
       async signOut() {
         await auth.signOut()

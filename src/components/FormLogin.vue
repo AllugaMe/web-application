@@ -6,7 +6,7 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapMutations } from 'vuex'
   import firebase from 'firebase'
   import application from '../lib/application.js'
   import database from '../lib/database.js'
@@ -18,11 +18,12 @@
   provider.addScope('user_birthday')
 
   export default {
-    computed: { ...mapGetters(['isSubscribing']) },
+    computed: mapGetters(['isSubscribing']),
     methods: {
+      ...mapMutations(['updateUser', 'update-isSubscribing']),
       async signIn() {
         try {
-          await this.$store.commit('update-isSubscribing', true)
+          this['update-isSubscribing'](false)
           const result = await auth.signInWithPopup(provider)
           const data = await database.ref('users').child(result.user.uid).once('value')
           const user = {
@@ -39,8 +40,8 @@
             await database.ref('users').child(result.user.uid).set(user)
           }
 
-          await this.$store.commit('update-user', user)
-          await this.$store.commit('update-isSubscribing', false)
+          this.updateUser(user)
+          this['update-isSubscribing'](true)
           this.$router.push('/dashboard')
         } catch(error) {
           console.error(error)

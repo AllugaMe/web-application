@@ -3,37 +3,42 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapMutations } from 'vuex'
   import application from './lib/application.js'
   import database from './lib/database.js'
 
   const auth = application.auth()
 
   export default {
-    computed: {
-      ...mapGetters(['user', 'profile', 'isSubscribing'])
-    },
-    created() {
-      auth.onAuthStateChanged(async authetication => {
+    computed: mapGetters(['user', 'profile', 'isSubscribing']),
+    methods: {
+      ...mapMutations(['updateUser']),
+      async authenticate(authetication) {
         try {
           if (this.isSubscribing)
             return
 
-          if (authetication)
-            var user = await database.ref('users').child(authetication.uid).once('value')
+          if (authetication) {
+            const dao = database.ref('users').child(authetication.uid)
+            var user = await dao.once('value') // Estou usando um 'var' porque
+          }                                    // uso '||' no update.
 
-          await this.$store.commit('update-user', user || {})
+          this.updateUser(user || {})
 
-          let permission = (this.$route.meta.profiles.indexOf(this.profile) > -1)
+          // TODO: Levar a permissão para a store.
+          let permission = this.$route.meta.profiles.includes(this.profile)
 
           if (!permission) {
             let isGuest = (this.profile === 'guest')
-            this.$router.replace(isGuest ? '/login' : '/dashboard')
+            this.$router.push(isGuest ? '/login' : '/dashboard')
           }
         } catch (err) {
           console.error(err)
         }
-      })
+      }
+    },
+    created() {
+      auth.onAuthStateChanged(this.authenticate)
     }
   }
 </script>
