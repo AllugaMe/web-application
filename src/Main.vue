@@ -19,11 +19,12 @@
             return
 
           if (authetication) {
-            const dao = database.ref('users').child(authetication.uid)
-            var user = await dao.once('value') // Estou usando um 'var' porque
-          }                                    // uso '||' no update.
+            const reference = database.ref('users').child(authetication.uid)
+            const data = await reference.once('value')
 
-          this.updateUser(user || {})
+            if (data.exists())
+              this.updateUser(data.val())
+          }
 
           // TODO: Levar a permissão para a store.
           let permission = this.$route.meta.profiles.includes(this.profile)
