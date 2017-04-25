@@ -1,6 +1,7 @@
 export default {
   application: {
     name: 'Nome da Aplicação',
+    logo: '/img/logo.png',
     author: {
       name: 'Nome da Aplicação',
       link: 'https://google.com/',

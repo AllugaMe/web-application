@@ -2,11 +2,11 @@
   header.main-header
     v-toolbar
       router-link.logo(to='/')
-        img.image(src='../asset/image/logo.png', :alt='application.name', :title='application.name')
+        img.image(src='../asset/image/logo.png', :src='application.logo', :alt='application.name', :title='application.name')
       v-toolbar-title {{ application.name }}
       v-toolbar-items
-        v-toolbar-item
-          u-menu
+        v-toolbar-item(href='/search', router) Pesquisar
+        u-menu
 </template>
 
 <script>
