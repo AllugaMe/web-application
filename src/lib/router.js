@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import store from './store.js'
+import store from '../store/index.js'
 import * as views from '../components/views'
 
 Vue.use(Router)
@@ -52,7 +52,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   let { user, profile } = store.getters
-  let permission = (to.meta.profiles.indexOf(profile) > -1)
+  let permission = to.meta.profiles.includes(profile)
 
   if (user !== undefined && !permission)
     return next((profile === 'guest') ? '/login' : '/dashboard')
