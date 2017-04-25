@@ -12,6 +12,6 @@ export default {
     id: null,
     name: 'Unknown',
     email: 'Unknown',
-    picture: '/img/icon-person.svg'
+    picture: ''
   }
 }

@@ -20,13 +20,14 @@
   export default {
     computed: mapGetters(['isSubscribing']),
     methods: {
-      ...mapMutations(['updateUser', 'update-isSubscribing']),
+      ...mapMutations(['updateUser', 'toggleSubscribing']),
       async signIn() {
+        this.toggleSubscribing()
+
         try {
-          this['update-isSubscribing'](false)
           const result = await auth.signInWithPopup(provider)
           const data = await database.ref('users').child(result.user.uid).once('value')
-          const user = {
+          var user = {
             id: result.user.uid,
             name: result.user.displayName,
             email: result.user.email,
@@ -39,13 +40,13 @@
           } else {
             await database.ref('users').child(result.user.uid).set(user)
           }
-
-          this.updateUser(user)
-          this['update-isSubscribing'](true)
-          this.$router.push('/dashboard')
         } catch(error) {
           console.error(error)
         }
+
+        this.updateUser(user)
+        this.toggleSubscribing()
+        this.$router.push('/dashboard')
       }
     }
   }

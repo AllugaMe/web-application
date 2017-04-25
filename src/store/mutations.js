@@ -1,10 +1,6 @@
 import Vue from 'vue'
 
 export default {
-  'update-isSubscribing'(store, isSubscribing) {
-    store.isSubscribing = isSubscribing
-  },
-  updateUser(store, user) {
-    Vue.set(store, 'user', { ...store.user, ...user })
-  }
+  toggleSubscribing: store => store.isSubscribing = !store.isSubscribing,
+  updateUser: (store, user) => store.user = { ...store.user, ...user }
 }
