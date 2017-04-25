@@ -1,10 +1,10 @@
 <template lang="pug">
-  v-btn(v-if='profile === \'guest\'', @click.native='signIn') Entrar
+  v-btn(v-if='profile === \'guest\'', href='/login', router) Entrar
   v-menu.user-menu(v-else, offset-y)
     u-picture(:user='user', :size='36', slot='activator')
     v-list
       v-list-item
-        v-list-tile(@click.native='profile')
+        v-list-tile(:href='`/profile/${user.id}`', router)
           v-list-tile-title Meu perfil
       v-list-item
         v-list-tile(@click.native='signOut')
@@ -32,12 +32,6 @@
           picture: ''
         })
         this.$router.push('/home')
-      },
-      signIn() {
-        this.$router.push('/login')
-      },
-      profile() {
-        this.$router.push(`/profile/${this.user.id}`)
       }
     }
   }
