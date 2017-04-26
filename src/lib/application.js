@@ -9,4 +9,8 @@ const application = initializeApp({
   messagingSenderId: "308801738062"
 })
 
+export const database = application.database()
+
+export const authentication = application.auth()
+
 export default application

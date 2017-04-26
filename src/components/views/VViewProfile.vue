@@ -6,7 +6,7 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import database from '../../lib/database.js'
+  import { getUserById } from '../../lib/user.js'
   import VView from '../VView.vue'
   import UPicture from '../user/UPicture.vue'
 
@@ -25,14 +25,10 @@
     methods: {
       async fetchUser() {
         try {
-          const id = this.$route.params.id
-          const reference = database.ref('users').child(id)
-          const data = await reference.once('value')
-
-          if (data.exists())
-            this.user = { ...this.user, ...data.val() }
+          let user = await getUserById(this.$route.params.id)
+          this.user = { ...this.user, ...user }
         } catch (err) {
-          console.error(err)
+          this.$store.dispatch('showError', err, { module: 'error' })
         }
       }
     },

@@ -12,25 +12,19 @@
 </template>
 
 <script>
-  import { mapGetters, mapMutations } from 'vuex'
-  import application from '../../lib/application.js'
+  import { mapGetters } from 'vuex'
+  import application, { authentication } from '../../lib/application.js'
   import UPicture from './UPicture.vue'
-
-  const auth = application.auth()
 
   export default {
     components: { UPicture },
-    computed: mapGetters(['user', 'profile']),
+    computed: mapGetters({
+      user: 'user/user',
+      profile: 'user/profile'
+    }),
     methods: {
-      ...mapMutations(['updateUser']),
       async signOut() {
-        await auth.signOut()
-        this.updateUser({   // TODO: Criar uma action que controle isso.
-          id: null,
-          name: 'Unknown',
-          email: 'Unknown',
-          picture: ''
-        })
+        await this.$store.dispatch('user/signOut')
         this.$router.push('/home')
       }
     }

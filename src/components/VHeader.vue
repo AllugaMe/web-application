@@ -14,7 +14,7 @@
   import UMenu from './user/UMenu.vue'
 
   export default {
-    computed: mapGetters(['application']),
+    computed: mapGetters({ application: 'application/application' }),
     components: { UMenu }
   }
 </script>

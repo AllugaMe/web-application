@@ -1,13 +1,12 @@
 <template lang="pug">
-  router-view(v-if='isLoaded')
+  div
+    router-view(v-if='isLoaded')
 </template>
 
 <script>
-  import { mapGetters, mapMutations } from 'vuex'
-  import application from './lib/application.js'
-  import database from './lib/database.js'
-
-  const auth = application.auth()
+  import { mapGetters, mapActions } from 'vuex'
+  import { authentication } from './lib/application.js'
+  import { getUserById } from './lib/user.js'
 
   export default {
     data() {
@@ -15,23 +14,26 @@
         isLoaded: false
       }
     },
-    computed: mapGetters(['user', 'profile', 'isSubscribing']),
+    computed: mapGetters({
+      user: 'user/user',
+      profile: 'user/profile',
+      isSubscribing: 'user/isSubscribing'
+    }),
     methods: {
-      ...mapMutations(['updateUser']),
+      ...mapActions({
+        updateUser: 'user/updateUser',
+        showError: 'error/showError'
+      }),
       async authenticate(authetication) {
         if (this.isSubscribing)
           return
 
         if (authetication) {
-          try {
-            const reference = database.ref('users').child(authetication.uid)
-            const data = await reference.once('value')
-
-            if (data.exists())
-              this.updateUser(data.val())
-          } catch (err) {
-            console.error(err)
-          }
+          const user = await getUserById(authetication.uid)
+          if (user instanceof Error)
+            this.showError(err)
+          else
+            this.updateUser(user)
         }
 
         this.isLoaded = true
@@ -46,7 +48,7 @@
       }
     },
     created() {
-      auth.onAuthStateChanged(this.authenticate)
+      authentication.onAuthStateChanged(this.authenticate)
     }
   }
 </script>

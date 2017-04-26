@@ -1,14 +1,15 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import state from './state.js'
-import getters from './getters.js'
-import mutations from './mutations.js'
-
+import * as user from './modules/user.js'
+import * as application from './modules/application.js'
+import * as error from './modules/error.js'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state,
-  getters,
-  mutations
+  modules: {
+    user,
+    application,
+    error
+  }
 })
