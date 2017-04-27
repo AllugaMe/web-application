@@ -19,7 +19,7 @@ export const getters = {
 export const mutations = {
   [CHANGE_ERROR] (store, payload) {
     if (isError(payload))
-      store.error = error.message
+      store.error = payload.message
     else if (isError(payload.error))
       store.error = payload.error.message
     else

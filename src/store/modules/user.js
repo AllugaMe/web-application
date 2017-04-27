@@ -1,5 +1,5 @@
 import { signIn, signOut } from '../../lib/user.js'
-import { UPDATE_USER, TOGGLE_SUBSCRIBE, SHOW_ERROR } from '../types.js'
+import { UPDATE_USER, TOGGLE_SUBSCRIBE } from '../types.js'
 
 const defaultUser = {
   id: null,
@@ -27,28 +27,28 @@ export const mutations = {
     state.isSubscribing = !state.isSubscribing
   },
   [UPDATE_USER] (state, payload) {
-    state.user = { ...state.user, payload }
+    state.user = { ...state.user, ...payload }
   }
 }
 
 export const actions = {
   toggleSubscring: ({ commit }) => commit(TOGGLE_SUBSCRIBE),
   updateUser: ({ commit }, payload) => commit(UPDATE_USER, payload),
-  signIn: async ({ commit, dispath }) => {
+  signIn: async ({ commit, dispatch }) => {
     commit(TOGGLE_SUBSCRIBE)
     try {
       const payload = await signIn()
+      commit(UPDATE_USER, payload)
     } catch (err) {
-      dispath('showError', err, { module: 'error' })
+      dispatch('error/showError', err, { root: true })
     }
-    commit(UPDATE_USER, payload)
     commit(TOGGLE_SUBSCRIBE)
   },
-  signOut: async ({ commit }, payload) => {
+  signOut: async ({ commit, dispatch }, payload) => {
     try {
       await signOut();
     } catch (err) {
-      dispath('showError', err, { module: 'error' })
+      dispatch('error/showError', err, { root: true })
     }
     commit(UPDATE_USER, defaultUser)
   }

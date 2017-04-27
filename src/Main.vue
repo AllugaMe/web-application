@@ -31,9 +31,9 @@
         if (authetication) {
           const user = await getUserById(authetication.uid)
           if (user instanceof Error)
-            this.showError(err)
+            this.$store.dispatch('error/showError', err)
           else
-            this.updateUser(user)
+            this.$store.dispatch('user/updateUser', user)
         }
 
         this.isLoaded = true

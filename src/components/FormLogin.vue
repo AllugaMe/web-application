@@ -12,7 +12,7 @@
     computed: mapGetters({ isSubscribing: 'user/isSubscribing' }),
     methods: {
       async signIn() {
-        await this.$store.dispatch('signIn', null, { module: 'user' })
+        await this.$store.dispatch('user/signIn', null)
         this.$router.push('/dashboard')
       }
     }
