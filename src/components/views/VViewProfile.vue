@@ -1,17 +1,16 @@
 <template lang="pug">
   v-view
-    h1 {{ user.name }}
-    u-picture(:size='100', :user='user')
+    u-details(:user='user')
 </template>
 
 <script>
   import { mapGetters } from 'vuex'
   import { getUserById } from '../../lib/user.js'
   import VView from '../VView.vue'
-  import UPicture from '../user/UPicture.vue'
+  import UDetails from '../user/UDetails.vue'
 
   export default {
-    components: { VView, UPicture },
+    components: { VView, UDetails },
     data() {
       return {
         user: {
