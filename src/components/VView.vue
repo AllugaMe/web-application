@@ -3,7 +3,7 @@
     v-header(v-if='!hideHeader')
     main.main-content
       v-content
-        v-container(fluid)
+        v-container
           slot
     v-footer(v-if='!hideFooter')
       v-link.white--text(:to='author.link') {{ author.name }}
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex'
+  import { mapGetters } from 'vuex'
   import VHeader from './VHeader.vue'
   import VLink from './VLink.vue'
 
@@ -31,7 +31,7 @@
         },
         set (value) {
           if (value === false)
-            this.hideError()
+            this.$store.dispatch('error/hideError')
         }
       }
     },
@@ -44,8 +44,7 @@
         type: Boolean,
         default: false
       }
-    },
-    methods: mapActions({ hideError: 'error/hideError' })
+    }
   }
 </script>
 

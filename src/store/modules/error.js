@@ -1,6 +1,6 @@
 import { CHANGE_ERROR } from '../types.js'
 
-const defaultError = { // TODO: Rever os dados do state de error.
+const defaultError = {
   error: ''
 }
 

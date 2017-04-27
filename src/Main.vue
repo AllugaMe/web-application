@@ -4,7 +4,7 @@
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex'
+  import { mapGetters } from 'vuex'
   import { authentication } from './lib/application.js'
   import { getUserById } from './lib/user.js'
 
@@ -20,10 +20,6 @@
       isSubscribing: 'user/isSubscribing'
     }),
     methods: {
-      ...mapActions({
-        updateUser: 'user/updateUser',
-        showError: 'error/showError'
-      }),
       async authenticate(authetication) {
         if (this.isSubscribing)
           return

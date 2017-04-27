@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-btn(v-if='profile === \'guest\'', href='/login', router) Entrar
+  v-btn(v-if='profile === \'guest\'', @click.native='signIn') Entrar
   v-menu.user-menu(v-else, offset-y)
     u-picture(:user='user', :size='36', slot='activator')
     v-list
@@ -26,6 +26,10 @@
       async signOut() {
         await this.$store.dispatch('user/signOut')
         this.$router.push('/home')
+      },
+      async signIn() {
+        await this.$store.dispatch('user/signIn')
+        this.$router.push('/dashboard')
       }
     }
   }
