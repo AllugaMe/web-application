@@ -34,4 +34,10 @@
 <style lang="stylus">
   .link
     cursor: pointer
+
+    &
+    &:link
+    &:visited
+      text-decoration: none
+
 </style>

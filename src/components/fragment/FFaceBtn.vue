@@ -21,6 +21,6 @@
 
     .icon--facebook
       display: inline-block
-      height: 28px
-      margin-left: 6px
+      height: 24px
+      margin-left: 8px
 </style>

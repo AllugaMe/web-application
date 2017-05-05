@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
+    "deep-equal": "^1.0.1",
     "firebase": "^3.8.0",
     "vue": "^2.2.6",
     "vue-router": "^2.4.0",

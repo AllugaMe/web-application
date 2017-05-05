@@ -1,27 +1,31 @@
 <template lang="pug">
   header.main-header
     v-toolbar
-      v-toolbar-side-icon
-        router-link(to="/")
-          img.image(src="../asset/image/logo.png", alt="Nome da Aplicação", title="Nome da Aplicação.")
-      v-toolbar-title Nome da Aplicação
+      router-link.logo(to='/')
+        img.image(src='../asset/image/logo.png', :src='application.logo', :alt='application.name', :title='application.name')
+      v-toolbar-title {{ application.name }}
       v-toolbar-items
-        v-toolbar-item
-          v-btn(@click.native="signOut") Sign Out
-            //- v-icon(right) close
+        v-toolbar-item(href='/search', router) Pesquisar
+        u-menu
 </template>
 
 <script>
-  import application from '../lib/application.js'
-
-  const auth = application.auth()
+  import { mapGetters } from 'vuex'
+  import UMenu from './user/UMenu.vue'
 
   export default {
-    methods: {
-      async signOut() {
-        await auth.signOut()
-        this.$router.push('/home')
-      }
-    }
+    computed: mapGetters({ application: 'application/application' }),
+    components: { UMenu }
   }
 </script>
+
+<style lang="stylus">
+  .main-header .logo
+    display: inline-block
+    line-height: 1
+
+    & > .image
+      display: inline-block
+      width: 56px
+      height: @width
+</style>

@@ -1,35 +1,60 @@
 <template lang="pug">
-  router-view(v-if="user !== undefined")
+  div
+    router-view(v-if='isLoaded')
 </template>
 
 <script>
   import { mapGetters } from 'vuex'
-  import application from './lib/application.js'
-
-  const auth = application.auth()
+  import { authentication } from './lib/application.js'
+  import { getUserById } from './lib/user.js'
 
   export default {
-    computed: {
-      ...mapGetters(['user', 'profile'])
+    data() {
+      return {
+        isLoaded: false
+      }
     },
-    created() {
-      auth.onAuthStateChanged(async user => {
-        await this.$store.commit('update-user', user || null)
+    computed: mapGetters({
+      user: 'user/user',
+      profile: 'user/profile',
+      isSubscribing: 'user/isSubscribing'
+    }),
+    methods: {
+      async authenticate(authetication) {
+        if (this.isSubscribing)
+          return
 
-        let permission = (this.$route.meta.profiles.indexOf(this.profile) > -1)
+        if (authetication) {
+          const user = await getUserById(authetication.uid)
+          if (user instanceof Error)
+            this.$store.dispatch('error/showError', err)
+          else
+            this.$store.dispatch('user/updateUser', user)
+        }
 
-        if (!permission) {
-          let isGuest = (this.profile === 'guest')
+        this.isLoaded = true
+
+        // TODO: Levar a permissão para a store.
+        let permission = this.$route.meta.profiles.includes(this.profile)
+
+        if (!permission) {                         // TODO: Informar erro de
+          let isGuest = (this.profile === 'guest') // permissão e redirecionar.
           this.$router.replace(isGuest ? '/login' : '/dashboard')
         }
-      })
+      }
+    },
+    created() {
+      authentication.onAuthStateChanged(this.authenticate)
     }
   }
 </script>
 
 <style lang="stylus">
+  $yellow = #f9dc5f
+  $blue = #5f7cf9
+
   $theme := {
-    primary: red
+    primary: $blue
     accent: yellow
     secondary: blue
     info: lightblue

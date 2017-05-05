@@ -3,27 +3,35 @@
     v-header(v-if='!hideHeader')
     main.main-content
       v-content
-        v-container(fluid)
+        v-container
           slot
     v-footer(v-if='!hideFooter')
-      v-link.white--text(:to='copyright.link') {{ copyright.author }}
-      |  &copy; {{ copyright.year }}
+      f-link.white--text(:to='author.link') {{ author.name }}
+      |  &copy; {{ author.year }}
+    v-snackbar(v-model='show', :timeout='4000', right, bottom) {{ error }}
+      v-btn(@click.native='hideError')
+        v-icon close
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import VHeader from './VHeader.vue'
-  import VLink from './VLink.vue'
+  import FLink from './fragment/FLink.vue'
 
   export default {
-    components: { VHeader, VLink },
-    data() {
-      let date = new Date()
-
-      return {
-        copyright: {
-          author: 'Nome da Aplicação',
-          link: 'https://google.com/',
-          year: date.getFullYear()
+    components: { VHeader, FLink },
+    computed: {
+      ...mapGetters({
+        author: 'application/author',
+        error: 'error/message'
+      }),
+      show: {
+        get () {
+          return this.$store.getters['error/show']
+        },
+        set (value) {
+          if (value === false)
+            this.$store.dispatch('error/hideError')
         }
       }
     },

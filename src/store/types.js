@@ -1,0 +1,3 @@
+export const UPDATE_USER = 'UPDATE_USER'
+export const TOGGLE_SUBSCRIBE = 'TOGGLE_SUBSCRIBE'
+export const CHANGE_ERROR = 'CHANGE_ERROR'

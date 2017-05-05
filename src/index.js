@@ -2,7 +2,7 @@ import './index.pug'
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import Main from './Main.vue'
-import store from './lib/store.js'
+import store from './store/index.js'
 import router from './lib/router.js'
 
 Vue.use(Vuetify)

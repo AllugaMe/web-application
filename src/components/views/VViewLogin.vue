@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-view(hideHeader='true')
+  v-view(:hideHeader='true')
     FormLogin
 </template>
 
