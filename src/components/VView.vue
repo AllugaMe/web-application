@@ -6,14 +6,15 @@
         v-container
           slot
     v-footer(v-if='!hideFooter')
-      f-link.white--text(:to='author.link') {{ author.name }}
-      |  &copy; {{ author.year }}
+      f-link.white--text(:to='owner.link') {{ owner.name }}
+      |  &copy; {{ owner.year }}
     v-snackbar(v-model='show', :timeout='4000', right, bottom) {{ error }}
       v-btn(@click.native='hideError')
         v-icon close
 </template>
 
 <script>
+  import * as types from '../store/types.js'
   import { mapGetters } from 'vuex'
   import VHeader from './VHeader.vue'
   import FLink from './fragment/FLink.vue'
@@ -22,7 +23,7 @@
     components: { VHeader, FLink },
     computed: {
       ...mapGetters({
-        author: 'application/author',
+        owner: types.OWNER_DATA,
         error: 'error/message'
       }),
       show: {

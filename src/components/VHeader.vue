@@ -2,19 +2,20 @@
   header.main-header
     v-toolbar
       router-link.logo(to='/')
-        img.image(src='../asset/image/logo.png', :src='application.logo', :alt='application.name', :title='application.name')
-      v-toolbar-title {{ application.name }}
+        img.image(src='../asset/image/logo.png', :src='app.logo', :alt='app.name', :title='app.name')
+      v-toolbar-title {{ app.name }}
       v-toolbar-items
         v-toolbar-item(href='/search', router) Pesquisar
         u-menu
 </template>
 
 <script>
+  import * as types from '../store/types.js'
   import { mapGetters } from 'vuex'
   import UMenu from './user/UMenu.vue'
 
   export default {
-    computed: mapGetters({ application: 'application/application' }),
+    computed: mapGetters({ app: types.APP_DATA }),
     components: { UMenu }
   }
 </script>
