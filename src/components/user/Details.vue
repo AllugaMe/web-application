@@ -1,9 +1,9 @@
 <template lang="pug">
-  v-row.user-details
+  v-row.user-details(v-if='user !== null')
     v-col(xs12, md6)
       v-card
         v-card-row.figure-row
-          u-picture(:user='user', :size='100')
+          user-picture(:user='user', :size='100')
         v-card-row.text-xs-center
           v-card-text
             h4 {{ user.name }}
@@ -13,24 +13,25 @@
       v-card
         v-card-row
           p Textão.
+  v-progress-circular(
+    v-else,
+    indeterminate,
+    v-bind:size="70",
+    v-bind:width="7"
+  )
 </template>
 
 <script>
   import { mapGetters } from 'vuex'
-  import UPicture from './UPicture.vue'
+  import UserPicture from './Picture.vue'
 
   export default {
-    components: { UPicture },
+    components: { UserPicture },
     props: {
       user: {
         type: Object,
         default() {
-          return {
-            id: null,
-            name: 'Unknown',
-            email: 'Unknown',
-            picture: ''
-          }
+          return null
         }
       }
     }

@@ -1,33 +1,34 @@
-import { CHANGE_ERROR } from '../types.js'
+import * as types from '../types.js'
 
-const defaultError = {
-  error: ''
+export const state = {
+  error: null
 }
 
-const isError = value => value instanceof Error
-const sleep = duration => new Promise(resolve => setTimeout(resolve, duration))
-
-export const namespaced = true
-
-export const state = { ...defaultError }
-
 export const getters = {
-  show: ({ error }) => !!error,
-  message: ({ error }) => error
+  [types.ERROR_DATA](state) {
+    return state.error
+  },
+  [types.ERROR_VISIBLE](state) {
+    return state.error !== null
+  }
 }
 
 export const mutations = {
-  [CHANGE_ERROR] (store, payload) {
-    if (isError(payload))
-      store.error = payload.message
-    else if (isError(payload.error))
-      store.error = payload.error.message
+  [types.ERROR_CHANGE](state, payload) {
+    if (payload instanceof Error)
+      state.error = payload.message
+    else if (!payload)
+      state.error = null
     else
-      store.error = payload
+      state.error = payload
   }
 }
 
 export const actions = {
-  hideError: ({ commit }) => commit(CHANGE_ERROR, ''),
-  showError: ({ commit }, payload) => commit(CHANGE_ERROR, payload)
+  [types.ERROR_HIDE]({ commit }) {
+    commit(types.ERROR_CHANGE)
+  },
+  [types.ERROR_SHOW]({ commit }, payload) {
+    commit(types.ERROR_CHANGE, payload)
+  }
 }
