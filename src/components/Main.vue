@@ -34,11 +34,12 @@
 
         this.isLoaded = true
 
-        const permission = !this.$route.meta.meta || (this.$route.meta.auth && this.auth)
+        let meta = this.$route.meta
 
-        if (!permission) // TODO: Informar erro de
-                           // permissão e redirecionar.
-          this.$router.replace('/home')
+        const permission = (!meta || !meta.auth) || (meta.auth && this.auth)
+
+        if (!permission)                // TODO: Informar erro de permissão
+          this.$router.replace('/home') // antes de redirecionar para a /HOME.
       }
     },
     created() {
