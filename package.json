@@ -7,7 +7,7 @@
     "dev": "webpack-dev-server --hot --open --content-base ./dist --client-log-level warning ",
     "debug": "webpack -d --env development --display-error-details",
     "watch": "webpack -w -d --env development --hide-modules",
-    "build": "webpack -p --env production --hide-modules",
+    "build": "webpack -p --env production --hide-modules --progress",
     "deploy": "webpack -p --env production --hide-modules"
   },
   "repository": {
