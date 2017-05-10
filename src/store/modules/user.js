@@ -54,9 +54,9 @@ export const actions = {
     provider.addScope('user_birthday')
 
     try {
-      const result = await authentication.signInWithPopup(provider)
-      const reference = getReference().child(result.user.uid)
-      const snapshot = await reference.once('value')
+      var result = await authentication.signInWithPopup(provider)
+      var reference = getReference().child(result.user.uid)
+      var snapshot = await reference.once('value')
     } catch (err) {
       return dispatch(types.ERROR_SHOW, err)
     }
