@@ -29,3 +29,7 @@ export const USER_UPDATE = 'user/USER_UPDATE'
 export const USER_SELECT = 'user/USER_SELECT'
 export const USER_SIGNIN = 'user/USER_SIGNIN'
 export const USER_SIGNOUT = 'user/USER_SIGNOUT'
+
+// Endereço
+export const STATES_DATA = 'address/STATES_DATA'
+export const CITIES_SELECT = 'address/CITIES_SELECT'

@@ -4,6 +4,7 @@ import * as types from './types.js'
 import * as app from './modules/app.js'
 import * as user from './modules/user.js'
 import * as error from './modules/error.js'
+import * as address from './modules/address.js'
 
 Vue.use(Vuex)
 
@@ -29,6 +30,7 @@ export default new Vuex.Store({
   modules: {
     app,
     user,
-    error
+    error,
+    address
   }
 })
