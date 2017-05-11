@@ -31,6 +31,10 @@ const router = new Router({
       meta: {
         auth: true
       }
+    },
+    {
+      path: '/test',
+      component: views.Test
     }
   ]
 })
