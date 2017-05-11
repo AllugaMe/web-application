@@ -18,8 +18,6 @@
         set (value) {
           if (!value)
             this.$store.dispatch(types.ERROR_HIDE)
-          else
-            this.$store.dispatch(types.ERROR_SHOW)
         }
       }
     },
