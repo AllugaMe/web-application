@@ -8,7 +8,7 @@ export const actions = {
     try {
       const snapshot = await database.ref('states').once('value')
 
-      if (!snapshot.exists)
+      if (!snapshot.exists())
         throw new Error('Can\'t get any state.')
       return snapshot.val()
     } catch (error) {
@@ -19,12 +19,18 @@ export const actions = {
     database.goOnline()
 
     try {
-      const reference = database.ref('states').child(payload)
+      const reference = database.ref('cities')
+      const query = reference.orderByChild('state').equalTo(payload)
+
+      /**
+       * Snapshot do banco de dados.
+       * @type {firebase.database.DataSnapshot}
+       */
       const snapshot = await reference.once('value')
 
-      if (!snapshot.exists)
+      if (!snapshot.exists())
         throw new Error('Can\'t find city using state "${payload}".')
-      return snapshot.val()
+      return Object.values(snapshot.val())
     } catch (error) {
       dispatch(types.ERROR_SHOW, error)
     }

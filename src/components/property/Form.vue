@@ -3,12 +3,12 @@
     v-select(
       :items='states',
       @input='updateCities',
-      item-value='id',
       label='Selecione o estado'
     )
     v-select(
       :items='cities',
-      :disabled='cityDisabled'
+      :disabled='cityDisabled',
+      label='Selecione a cidade'
     )
 </template>
 
@@ -30,7 +30,8 @@
     },
     methods: {
       async updateCities(state) {
-        this.cities = await this.$store.dispatch(types.CITIES_SELECT, state)
+        const cities = await this.$store.dispatch(types.CITIES_SELECT, state.id)
+        this.cities = cities.map(city => ({ text: city.name, ...city }))
         this.cityDisabled = false
       }
     }
