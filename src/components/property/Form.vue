@@ -1,14 +1,21 @@
 <template lang="pug">
   form(@submit.prevent='save')
     v-select(
+      v-model='selectedState',
       :items='states',
-      @input='updateCities',
-      label='Selecione o estado'
+      item-value='id',
+      item-text='name',
+      label='Selecione o estado',
+      autocomplete
     )
     v-select(
+      v-model='selectedCity',
       :items='cities',
       :disabled='cityDisabled',
-      label='Selecione a cidade'
+      item-value='id',
+      item-text='name',
+      label='Selecione a cidade',
+      autocomplete
     )
 </template>
 
@@ -18,20 +25,28 @@
   export default {
     data() {
       return {
+        selectedState: null,
+        selectedCity: null,
         cityDisabled: true,
         cities: [],
         states: [
           {
             id: '-Kjodg1kcPifWWebPf3o',
-            text: 'São Paulo'
+            name: 'São Paulo'
           }
         ]
       }
     },
-    methods: {
-      async updateCities(state) {
-        const cities = await this.$store.dispatch(types.CITIES_SELECT, state.id)
-        this.cities = cities.map(city => ({ text: city.name, ...city }))
+    watch: {
+      async selectedState() {
+        this.cityDisabled = true
+        this.cities = await this.$store.dispatch(
+          types.CITIES_SELECT,
+          this.selectedState.id
+        )
+
+        console.log(JSON.stringify(this.cities))
+
         this.cityDisabled = false
       }
     }
