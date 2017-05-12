@@ -1,21 +1,20 @@
 <template lang="pug">
   v-app
     view-header(v-if='!hideHeader')
-    main.main-content
-      v-content
-        v-container
-          slot
+    view-content
+      slot
     view-footer(v-if='!hideFooter')
     view-error-message
 </template>
 
 <script>
-  import ViewHeader from './Header.vue'
-  import ViewFooter from './Footer.vue'
+  import ViewContent from './Content.vue'
   import ViewErrorMessage from './ErrorMessage.vue'
+  import ViewFooter from './Footer.vue'
+  import ViewHeader from './Header.vue'
 
   export default {
-    components: { ViewHeader, ViewFooter, ViewErrorMessage },
+    components: { ViewContent, ViewErrorMessage, ViewFooter, ViewHeader },
     props: {
       hideHeader: {
         type: Boolean,
@@ -28,11 +27,3 @@
     }
   }
 </script>
-
-<style lang="stylus">
-  .main-content
-    min-height: calc(100vh - 45px) // A altura da tela - o tamanho do rodapé.
-
-    .main-header + &                          // Quando ha o cabeçalho o tamanho
-      min-height: calc(100vh - (64px + 45px)) // dele influencia na fórmula.
-</style>
