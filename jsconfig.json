@@ -1,6 +1,14 @@
 {
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs"
+  },
   "include": [
     "src/**/*.vue",
-    "src/**/*.js"
+    "**/*.js"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
   ]
 }

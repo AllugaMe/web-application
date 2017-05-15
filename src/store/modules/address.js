@@ -10,10 +10,11 @@ export const actions = {
 
       if (!snapshot.exists())
         throw new Error('Can\'t get any state.')
-      return snapshot.val()
+      var data = Object.values(snapshot.val())
     } catch (error) {
       dispatch(types.ERROR_SHOW, error)
     }
+    return data || []
   },
   async [types.CITIES_SELECT]({ dispatch }, payload) {
     database.goOnline()
@@ -30,9 +31,11 @@ export const actions = {
 
       if (!snapshot.exists())
         throw new Error('Can\'t find city using state "${payload}".')
-      return Object.values(snapshot.val())
+      var data = Object.values(snapshot.val())
     } catch (error) {
       dispatch(types.ERROR_SHOW, error)
     }
+
+    return data || []
   }
 }

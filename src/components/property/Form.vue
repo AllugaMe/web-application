@@ -5,69 +5,95 @@
       v-row
         v-col(xs12, md4)
           v-select(
-            v-model='state',
+            v-model='property.state',
             :items='states',
+            :disabled='statesDisabled',
             item-value='id',
             item-text='name',
-            label='Selecione o estado',
+            label='Estado',
             autocomplete
           )
         v-col(xs12, md4)
           v-select(
-            v-model='city',
+            v-model='property.city',
             :items='cities',
-            :disabled='cityDisabled',
+            :disabled='citiesDisabled',
             item-value='id',
             item-text='name',
-            label='Selecione a cidade',
+            label='Cidade',
             autocomplete
           )
         v-col(xs12, md5)
           v-text-field(
-            v-model='address',
+            v-model='property.address',
             label='Logradouro'
           )
         v-col(xs3, md2)
           v-text-field(
-            v-model='number',
+            v-model='property.number',
             label='Número'
           )
         v-col(xs9, md4)
           v-text-field(
-            v-model='complement',
+            v-model='property.complement',
             label='Complemento'
           )
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   import * as types from '../../store/types.js'
 
   export default {
+    computed: {
+      ...mapGetters({ user: types.USER_DATA }),
+      state() {
+        return this.property.state
+      }
+    },
+    props: {
+      property: {
+        type: Object,
+        default() {
+          return {
+            state: null
+          }
+        }
+      }
+    },
     data() {
       return {
-        address: null,
-        number: null,
-        city: null,
-        cityDisabled: true,
+        citiesDisabled: true,
+        statesDisabled: false,
         cities: [],
-        state: null,
-        states: [
-          {
-            id: '-Kjodg1kcPifWWebPf3o',
-            name: 'São Paulo'
-          }
-        ]
+        states: []
       }
     },
     watch: {
       async state() {
-        this.cityDisabled = true
+        this.citiesDisabled = true
         this.cities = await this.$store.dispatch(
           types.CITIES_SELECT,
-          this.state.id
+          this.property.state.id
         )
-        this.cityDisabled = false
+        this.citiesDisabled = false
+      },
+    },
+    methods: {
+      async save() {
+        
       }
+    },
+    async created() {
+      this.states = await this.$store.dispatch(types.STATES_DATA)
+      let index = this.states.findIndex(state => state.name === 'São Paulo')
+      this.property.state = this.states[index]
+      this.statesDisabled = true
+
+      this.$store.dispatch(
+        types.ERROR_SHOW,
+        'A versão beta atende apenas o estado de São Paulo.'
+      )
     }
   }
 </script>

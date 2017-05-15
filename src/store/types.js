@@ -33,3 +33,12 @@ export const USER_SIGNOUT = 'user/USER_SIGNOUT'
 // Endereço
 export const STATES_DATA = 'address/STATES_DATA'
 export const CITIES_SELECT = 'address/CITIES_SELECT'
+
+// Imóvel
+export const PROPERTY_DATA = 'property/PROPERTY_DATA'
+export const PROPERTY_CHANGE = 'property/PROPERTY_CHANGE'
+export const PROPERTY_SELECT = 'property/PROPERTY_SELECT'
+export const PROPERTY_INSERT = 'property/PROPERTY_INSERT'
+export const PROPERTY_UPDATE = 'property/PROPERTY_UPDATE'
+export const PROPERTY_DELETE = 'property/PROPERTY_DELETE'
+export const PROPERTIES_CHANGE = 'property/PROPERTIES_CHANGE'
