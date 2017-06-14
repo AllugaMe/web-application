@@ -1,5 +1,7 @@
 # :house: Alluga.me/Web Application
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/AllugaMe/web-application.svg)](https://greenkeeper.io/)
+
 ## Instalation
 After clone/download this repository install dependencies.
 
