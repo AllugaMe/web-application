@@ -28,6 +28,15 @@ function getConfiguration (env) {
     module: {
       rules: getRules(env)
     },
+    resolve: {
+      alias: {
+        '@components': path.resolve(__dirname, '../src/components'),
+        '@styles': path.resolve(__dirname, '../src/assets/styles'),
+        '@images': path.resolve(__dirname, '../src/assets/images'),
+        '@fonts': path.resolve(__dirname, '../src/assets/fonts')
+      },
+      extensions: ['.js', '.json', '.vue', '.styl']
+    },
     performance: {
       hints: (env !== 'development') ? 'warning' : false
     },

@@ -1,12 +1,12 @@
 <template lang="pug">
-  div
-    router-view(v-if='isLoaded')
+  router-view(v-if='isLoaded')
+  v-progress-circular.green--text(v-else, indeterminate, :width='3')
 </template>
 
 <script>
   import { mapGetters } from 'vuex'
-  import * as types from '../store/types.js'
-  import { authentication } from '../application.js'
+  import * as types from './store/types.js'
+  import { authentication } from './application.js'
 
   export default {
     data() {
@@ -62,12 +62,12 @@
     success: green
   }
 
-  @import '../../node_modules/vuetify/src/stylus/main'
+  @import '~vuetify/src/stylus/main'
 
   @font-face
     font-family: 'Material Icons'
-    src: url('../asset/font/MaterialIcons-Regular.woff2') format('woff2'),
-         url('../asset/font/MaterialIcons-Regular.woff')  format('woff')
+    src: url('~@fonts/MaterialIcons-Regular.woff2') format('woff2'),
+         url('~@fonts/MaterialIcons-Regular.woff')  format('woff')
 
   html                          // O Vuetify usa scroll no eixo Y independente
     overflow-y: auto !important // da sua necessidade e essa regra resolve isso.

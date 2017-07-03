@@ -24,11 +24,13 @@ function getRules (env) {
     {
       loader: 'stylus-loader',
       options: {
+        preferPathResolver: 'webpack',
         'include css': true,
         'include': [
           path.resolve(__dirname, '../node_modules'),
           path.resolve(__dirname, '../src/assets/styles')
         ],
+        'resolve url': true,
         'define': { env }
       }
     }

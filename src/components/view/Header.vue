@@ -3,7 +3,7 @@
     v-toolbar
       router-link.logo-image(to='/')
         img.image(
-          src='../../asset/image/logo.png',
+          src='~@images/logo.png',
           :src='app.logo',
           :alt='app.name',
           :title='app.name'
