@@ -29,7 +29,7 @@ function getConfiguration (env) {
       rules: getRules(env)
     },
     performance: {
-      hints: (env === 'development') ? 'warning' : false
+      hints: (env !== 'development') ? 'warning' : false
     },
     devtool: (env === 'development') ? 'source-map' : false
   }
