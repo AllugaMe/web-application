@@ -20,14 +20,17 @@ npm install
 ## Guide
 ### Keep everything clean and simple
 - No semi-colons;
-- No useless curly brackets;
 - No double quotes;
 - Margin 80 characters;
 
 ```js
 // Right
-const isObject = value => value && typeof value === 'object'
-const isEmpty = object => isObject(object) && Object.keys(object).length === 0
+const isObject = value => {
+  return value && typeof value === 'object'
+}
+const isEmpty = object => {
+  return isObject(object) && Object.keys(object).length === 0
+}
 
 // Wrong
 function isObject(value) {
@@ -50,16 +53,16 @@ function isEmpty() {
 ```
 
 ### Components
-- Use **kebab-case** components on SFC templates;
+- Use **kebab-case** on single file components;
 
 ```vue
-<template lang="pug">
-  - // Right
-  market-shelf(:id='id')
+<template>
+  <!-- Right -->
+  <market-shelf :id="id"></market-shelf>
 
-  - // Wrong
-  MarketShelf(:id='id')
-  Market-Shelf(:id='id')
-  marketShelf(:id='id')
+  <!-- Wrong -->
+  <MarketShelf :id='id'></MarketShelf>
+  <Market-Shelf :id='id'></Market-Shelf>
+  <marketShelf :id='id'></marketShelf>
 </template>
 ```
