@@ -75,15 +75,6 @@ function getRules (env) {
       use: vueLoader
     },
     {
-      test: /\.pug$/,
-      use: {
-        loader: 'pug-loader',
-        options: {
-          pretty: (env === 'development')
-        }
-      }
-    },
-    {
       test: /\.woff2?$/,
       use: {
         loader: 'file-loader',

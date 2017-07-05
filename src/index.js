@@ -1,4 +1,3 @@
-import './index.pug'
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import Main from './App'

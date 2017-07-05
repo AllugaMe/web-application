@@ -18,7 +18,7 @@ function getPlugins (env) {
   const plugins = [
     new ExtractTextPlugin('css/style.css'),
     new HtmlPlugin({
-      template: path.resolve(__dirname, '../src/index.pug'),
+      template: path.resolve(__dirname, '../src/index.html'),
       filename: 'index.html'
     })
   ]

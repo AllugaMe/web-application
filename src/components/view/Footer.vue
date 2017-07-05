@@ -1,7 +1,7 @@
-<template lang="pug">
-  v-footer
-    fragment-link.white--text(:to='owner.link') {{ owner.name }} 
-    | &copy; {{ owner.year }}
+<template>
+  <v-footer>
+    <fragment-link class="white--text" :to="owner.link">{{ owner.name }} &copy; {{ owner.year }}</fragment-link>
+  </v-footer>
 </template>
 
 <script>

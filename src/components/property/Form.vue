@@ -1,43 +1,26 @@
-<template lang="pug">
-  form(@submit.prevent='save')
-    v-subheader Endereço
-    v-container(fluid)
-      v-row
-        v-col(xs12, md4)
-          v-select(
-            v-model='property.state',
-            :items='states',
-            :disabled='statesDisabled',
-            item-value='id',
-            item-text='name',
-            label='Estado',
-            autocomplete
-          )
-        v-col(xs12, md4)
-          v-select(
-            v-model='property.city',
-            :items='cities',
-            :disabled='citiesDisabled',
-            item-value='id',
-            item-text='name',
-            label='Cidade',
-            autocomplete
-          )
-        v-col(xs12, md5)
-          v-text-field(
-            v-model='property.address',
-            label='Logradouro'
-          )
-        v-col(xs3, md2)
-          v-text-field(
-            v-model='property.number',
-            label='Número'
-          )
-        v-col(xs9, md4)
-          v-text-field(
-            v-model='property.complement',
-            label='Complemento'
-          )
+<template>
+  <form @submit.prevent="save">
+    <v-subheader>Endereço</v-subheader>
+    <v-container fluid>
+      <v-row>
+        <v-col xs12 md4>
+          <v-select v-model="property.state" :items="states" :disabled="statesDisabled" item-value="id" item-text="name" label="Estado" autocomplete></v-select>
+        </v-col>
+        <v-col xs12 md4>
+          <v-select v-model="property.city" :items="cities" :disabled="citiesDisabled" item-value="id" item-text="name" label="Cidade" autocomplete></v-select>
+        </v-col>
+        <v-col xs12 md5>
+          <v-text-field v-model="property.address" label="Logradouro"></v-text-field>
+        </v-col>
+        <v-col xs3 md2>
+          <v-text-field v-model="property.number" label="Número"></v-text-field>
+        </v-col>
+        <v-col xs9 md4>
+          <v-text-field v-model="property.complement" label="Complemento"></v-text-field>
+        </v-col>
+      </v-row>
+    </v-container>
+  </form>
 </template>
 
 <script>

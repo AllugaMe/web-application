@@ -1,6 +1,6 @@
-<template lang="pug">
-  router-view(v-if='isLoaded')
-  v-progress-circular.green--text(v-else, indeterminate, :width='3')
+<template>
+  <router-view v-if="isLoaded"></router-view>
+  <v-progress-circular class="green--text" v-else :width="3" indeterminate></v-progress-circular>
 </template>
 
 <script>

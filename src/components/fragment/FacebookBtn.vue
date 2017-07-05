@@ -1,7 +1,8 @@
-<template lang="pug">
-  v-btn.btn--facebook(:type='type', large)
-    slot
-    img.icon--facebook(src='~@images/icon-facebook.svg', alt='Facebook', title='Ícone do Facebook')
+<template>
+  <v-btn class="btn--facebook" :type="type" large>
+    <slot></slot>
+    <img src="~@images/icon-facebook.svg" alt="Facebook" class="icon--facebook" title="Ícone do Facebook">
+  </v-btn>
 </template>
 
 <script>

@@ -1,14 +1,20 @@
-<template lang="pug">
-  v-menu.user-menu(v-if='auth', offset-y)
-    user-picture(:user='user', :size='36', slot='activator')
-    v-list
-      v-list-item
-        v-list-tile(:href='`/profile/${user.id}`', router)
-          v-list-tile-title Meu perfil
-      v-list-item
-        v-list-tile(@click.native='signOut')
-          v-list-tile-title Sair
-  fragment-facebook-btn(v-else, @click.native='signIn') Inscrever / Entrar
+<template>
+  <v-menu class="user-menu" v-if="auth" offset-y>
+    <user-picture :user="user" :size="36" slot="activator"></user-picture>
+    <v-list>
+      <v-list-item>
+        <v-list-tile :href="`/profile/.id`" router>
+          <v-list-tile-title>Meu perfil</v-list-tile-title>
+        </v-list-tile>
+      </v-list-item>
+      <v-list-item>
+        <v-list-tile @click.native="signOut">
+          <v-list-tile-title>Sair</v-list-tile-title>
+        </v-list-tile>
+      </v-list-item>
+    </v-list>
+  </v-menu>
+  <fragment-facebook-btn v-else @click.native="signIn">Inscrever / Entrar</fragment-facebook-btn>
 </template>
 
 <script>

@@ -1,17 +1,16 @@
-<template lang="pug">
-  header.main-header
-    v-toolbar
-      router-link.logo-image(to='/')
-        img.image(
-          src='~@images/logo.png',
-          :src='app.logo',
-          :alt='app.name',
-          :title='app.name'
-        )
-      v-toolbar-title {{ app.name }}
-      v-toolbar-items
-        v-toolbar-item(href='/search', router) Pesquisar
-        user-menu
+<template>
+  <header class="main-header">
+    <v-toolbar>
+      <router-link class="logo-image" to="/">
+        <img src="~@images/logo.png" alt class="image" :src="app.logo" :alt="app.name" :title="app.name">
+      </router-link>
+      <v-toolbar-title>{{ app.name }}</v-toolbar-title>
+      <v-toolbar-items>
+        <v-toolbar-item href="/search" router>Pesquisar</v-toolbar-item>
+        <user-menu></user-menu>
+      </v-toolbar-items>
+    </v-toolbar>
+  </header>
 </template>
 
 <script>

@@ -1,6 +1,7 @@
-<template lang="pug">
-  view-container
-    h1 Search
+<template>
+  <view-container>
+    <h1>Search</h1>
+  </view-container>
 </template>
 
 <script>

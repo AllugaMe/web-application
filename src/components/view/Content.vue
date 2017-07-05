@@ -1,10 +1,15 @@
-<template lang="pug">
-  main.main-content
-    v-content
-      v-container(fluid)
-        v-row
-          v-col(xs12, md10, offset-md1)
-            slot
+<template>
+  <main class="main-content">
+    <v-content>
+      <v-container fluid>
+        <v-row>
+          <v-col xs12 md10 offset-md1>
+            <slot></slot>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-content>
+  </main>
 </template>
 
 <style lang="stylus">

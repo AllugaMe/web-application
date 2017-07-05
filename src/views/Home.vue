@@ -1,6 +1,7 @@
-<template lang="pug">
-  view-container
-    h1 Home
+<template>
+  <view-container>
+    <h1>Home</h1>
+  </view-container>
 </template>
 
 <script>

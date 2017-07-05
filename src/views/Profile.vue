@@ -1,6 +1,7 @@
-<template lang="pug">
-  view-container
-    user-details(:user='user')
+<template>
+  <view-container>
+    <user-details :user="user"></user-details>
+  </view-container>
 </template>
 
 <script>

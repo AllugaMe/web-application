@@ -1,6 +1,7 @@
-<template lang="pug">
-  view-container
-    property-form
+<template>
+  <view-container>
+    <property-form></property-form>
+  </view-container>
 </template>
 
 <script>

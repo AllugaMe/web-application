@@ -1,6 +1,7 @@
-<template lang="pug">
-  view-container
-    h1 Dashboard
+<template>
+  <view-container>
+    <h1>Dashboard</h1>
+  </view-container>
 </template>
 
 <script>

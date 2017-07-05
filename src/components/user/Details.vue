@@ -1,24 +1,30 @@
-<template lang="pug">
-  v-row.user-details(v-if='user !== null')
-    v-col(xs12, md6)
-      v-card
-        v-card-row.figure-row
-          user-picture(:user='user', :size='100')
-        v-card-row.text-xs-center
-          v-card-text
-            h4 {{ user.name }}
-        v-card-row.text-xs-center
-          v-card-text {{ user.email }}
-    v-col(xs12, md6)
-      v-card
-        v-card-row
-          p Textão.
-  v-progress-circular(
-    v-else,
-    indeterminate,
-    v-bind:size="70",
-    v-bind:width="7"
-  )
+<template>
+  <v-row class="user-details" v-if="user !== null">
+    <v-col xs12 md6>
+      <v-card>
+        <v-card-row class="figure-row">
+          <user-picture :user="user" :size="100"></user-picture>
+        </v-card-row>
+        <v-card-row class="text-xs-center">
+          <v-card-text>
+            <h4>{{ user.name }}</h4>
+          </v-card-text>
+        </v-card-row>
+        <v-card-row class="text-xs-center">
+          <v-card-text>{{ user.email }}</v-card-text>
+        </v-card-row>
+      </v-card>
+    </v-col>
+
+    <v-col xs12 md6>
+      <v-card>
+        <v-card-row>
+          <p>Textão.</p>
+        </v-card-row>
+      </v-card>
+    </v-col>
+  </v-row>
+  <v-progress-circular v-else indeterminate :size="70" :width="7"></v-progress-circular>
 </template>
 
 <script>

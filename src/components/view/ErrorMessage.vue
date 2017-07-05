@@ -1,7 +1,9 @@
-<template lang="pug">
-  v-snackbar(v-model='show', :timeout='5000', right, bottom) {{ error }}
-    v-btn(@click.native='close')
-      v-icon close
+<template>
+  <v-snackbar v-model="show" :timeout="5000" right bottom>{{ error }}
+    <v-btn @click.native="close">
+      <v-icon>close</v-icon>
+    </v-btn>
+  </v-snackbar>
 </template>
 
 <script>

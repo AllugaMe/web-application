@@ -1,10 +1,12 @@
-<template lang="pug">
-  v-app
-    view-header(v-if='!hideHeader')
-    view-content
-      slot
-    view-footer(v-if='!hideFooter')
-    view-error-message
+<template>
+  <v-app>
+    <view-header v-if="!hideHeader"></view-header>
+    <view-content>
+      <slot></slot>
+    </view-content>
+    <view-footer v-if="!hideFooter"></view-footer>
+    <view-error-message></view-error-message>
+  </v-app>
 </template>
 
 <script>

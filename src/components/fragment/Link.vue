@@ -1,6 +1,7 @@
-<template lang="pug">
-  a.link(:to='to', @click='openLink', ref='element', target='_blank')
-    slot
+<template>
+  <a href="" class="link" :to="to" @click="openLink" ref="element" target="_blank">
+    <slot></slot>
+  </a>
 </template>
 
 <script>
